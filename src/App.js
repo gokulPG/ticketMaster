@@ -63,7 +63,7 @@ class App extends React.Component {
     }
     
     handleDelet(value){
-        axios.delete(`http://dct-api-data.herokuapp.com/tickets/${value}?api_key=627a98f2b755186b`)
+        axios.delete(`http://cors-anywhere.herokuapp.com/dct-api-data.herokuapp.com/tickets/${value}?api_key=627a98f2b755186b`)
         this.setState((prevState) => ({
             tickets: prevState.tickets.filter(ticket => ticket.ticket_code !== value),
             originalTickets: prevState.originalTickets.filter(ticket => ticket.ticket_code !== value)
@@ -87,12 +87,15 @@ class App extends React.Component {
     render(){
         return(
             <div>
+                <div class="d-flex justify-content-center">
+                     <h1>Ticket Master</h1>  
+                </div>
+            
                 <div className="container">
                     <div className="row">
                         
                         <div className="col-md-8">                    
-                            <h2>Ticket Master</h2>  
-                            <h2>Listing Tickets - {this.state.tickets.length}</h2>
+                            <h3>Listing Tickets - {this.state.tickets.length}</h3>
 
                             <SearchForm handleSearch ={this.handleSearch} handlePriorityClick={this.handlePriorityClick}/>
 
@@ -104,9 +107,15 @@ class App extends React.Component {
                             <TicketForm handleTicketSubmission={this.handleTicketSubmission}/>
                         </div>
                     </div>
+                    <div className="row">
+                        <div className="col-md-6">
+                            <PieChart checkedTickets={this.state.checkedTickets}/>
+                        </div>
+                        <div className="col-md-6">   
+                             <BarChart checkedTickets={this.state.checkedTickets} />
+                        </div>     
+                    </div>    
                 </div>
-                        <PieChart checkedTickets={this.state.checkedTickets}/>
-                        <BarChart checkedTickets={this.state.checkedTickets} />
             </div>        
                  
         )

@@ -94,10 +94,11 @@ class TicketForm extends React.Component{
         return(
             
             <form onSubmit={this.handleSubmit}>
+                <div className="form-group">
                 <fieldset>
                     <legend>Add Ticket</legend>
                     
-                    <div class="form-group">
+                    <div className="form-group">
                         <label>
                             name
                             <input type="text" class="form-control" value={this.state.name} onChange={this.handleNameChange}/>
@@ -149,6 +150,7 @@ class TicketForm extends React.Component{
                     <input class="btn btn-info" type="submit" />  
                     <button class="btn btn-dark" onClick={this.handleReset}>reset</button>    
                 </fieldset>
+                </div>
             </form>
         )
     }
